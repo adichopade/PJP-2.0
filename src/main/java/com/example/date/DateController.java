@@ -42,7 +42,7 @@ public class DateController {
 			 date1=new Date(attr.getA());
 		}
 		if(attr.getB().length()==0) {
-			 date2=new Date("00-00-0000");
+			 date2=new Date("11-11-1111");
 		}else {
 			 date2=new Date(attr.getB());
 		}
@@ -53,10 +53,24 @@ public class DateController {
 		int mm2=date2.getMonth();
 		int yy2=date2.getYear();
 		
-		LocalDate datee1 = LocalDate.of(yy1,mm1,dd1);
-		LocalDate datee2 = LocalDate.of(yy2,mm2,dd2);
+		
+		LocalDate datee1= LocalDate.now();  
+		LocalDate datee2= LocalDate.now(); 
+		try {
+			datee1 = LocalDate.of(yy1,mm1,dd1);
+			datee2 = LocalDate.of(yy2,mm2,dd2);
+		}catch(Exception e) {
+			e.printStackTrace();
+			model.addAttribute("ans","    Enter in dd-mm-yyyy format");
+			return "index.jsp";
+			
+		}
 		
 		
+		
+		
+		
+		System.out.println(datee1+" "+datee2);
 		AboutDay ob1=new AboutDay();
 		AddToDate ob2=new AddToDate();
 		DifferenceBetweenDates ob3=new DifferenceBetweenDates();
